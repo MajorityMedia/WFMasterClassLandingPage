@@ -1,121 +1,182 @@
-<!-- ⚡ URGENCY BANNER -->
-<div class="urgency-banner">
-  ⚡ Live Masterclass — Thursday <strong>[DATE]</strong>. Only 100 spots. Doors close at midnight.
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Secret That Saved Shrek 2 — The Writer’s Forge</title>
 
-<!-- 🔥 HERO SECTION -->
-<section class="hero">
-  <div class="hero-content">
-    <div class="badge">The Writer’s Forge Presents</div>
-    <h1>The Secret That Saved <span class="curse">Shrek 2</span> — And How It Can Save Your Script</h1>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
 
-    <p class="subheadline">
-      When I joined <em>Shrek 2</em>, there was no script — just a 3-inch notebook of dead ideas.
-      The film only came alive when we found its <strong>Primal Drive</strong>:
+  <!-- === WRITER’S FORGE THEME CSS === -->
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    :root{
+      --bg:#0a0a0a;--bg2:#0f0f0f;--txt:#e8e8e8;
+      --muted:#a8a8a8;--muted2:#666;
+      --red:#dc2626;--red-dark:#991b1b;
+      --card:#1a1a1a;--border:#2a2a2a;--green:#22c55e;
+    }
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-height:1.6;}
+    .urgency-banner{background:linear-gradient(135deg,var(--red)0%,var(--red-dark)100%);
+      color:#fff;padding:1rem;text-align:center;position:sticky;top:0;z-index:100;
+      font-weight:600;box-shadow:0 4px 20px rgba(0,0,0,.5);}
+    .countdown{font-variant-numeric:tabular-nums;font-weight:900;}
+    .hero{min-height:100vh;background:linear-gradient(135deg,#1a0000 0%,#0a0a0a 50%,#1a0000 100%);
+      display:flex;align-items:center;justify-content:center;text-align:center;padding:2rem;position:relative;overflow:hidden;}
+    .hero::before{content:'🔥';position:absolute;font-size:400px;opacity:.03;top:50%;left:50%;transform:translate(-50%,-50%);}
+    .hero-content{max-width:1000px;position:relative;z-index:1;}
+    .badge{display:inline-block;background:rgba(220,38,38,.2);border:2px solid var(--red);color:#fca5a5;
+      padding:.5rem 1.5rem;border-radius:50px;font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:2rem;}
+    h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,8vw,6rem);font-weight:900;line-height:1.1;margin-bottom:1.5rem;
+      background:linear-gradient(135deg,#ffffff 0%,var(--red)100%);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .curse{color:var(--red);-webkit-text-fill-color:var(--red);}
+    .subheadline{font-size:clamp(1.2rem,3vw,1.8rem);color:var(--muted);max-width:700px;margin:0 auto 1rem;font-weight:400;}
+    .tagline{font-size:clamp(1rem,2vw,1.3rem);color:var(--muted2);margin-bottom:3rem;font-style:italic;}
+    .cta-button{display:inline-block;background:linear-gradient(135deg,var(--red)0%,var(--red-dark)100%);
+      color:white;padding:1.5rem 3rem;font-size:1.2rem;font-weight:700;text-decoration:none;border-radius:8px;
+      text-transform:uppercase;letter-spacing:1px;transition:all .3s ease;border:2px solid var(--red);
+      box-shadow:0 10px 40px rgba(220,38,38,.3);}
+    .cta-button:hover{transform:translateY(-2px);box-shadow:0 15px 50px rgba(220,38,38,.5);}
+    .section{padding:5rem 2rem;max-width:1200px;margin:0 auto;}
+    .section-dark{background:var(--bg2);}
+    .section-accent{background:linear-gradient(135deg,#1a0000 0%,#0f0f0f 100%);
+      border-top:1px solid rgba(220,38,38,.2);border-bottom:1px solid rgba(220,38,38,.2);}
+    h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.5rem);
+      margin-bottom:2rem;text-align:center;color:#fff;}
+    .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;margin:3rem 0;}
+    .feature-card{background:var(--card);padding:2.5rem;border-radius:12px;border:1px solid var(--border);
+      transition:all .3s ease;}
+    .feature-card:hover{border-color:var(--red);transform:translateY(-5px);box-shadow:0 10px 30px rgba(220,38,38,.2);}
+    .feature-icon{font-size:3rem;margin-bottom:1rem;}
+    .feature-card h3{font-size:1.5rem;margin-bottom:1rem;color:#fff;}
+    .feature-card p{color:var(--muted);line-height:1.8;}
+    .feature-card .detail{margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);
+      color:var(--red);font-weight:600;font-size:.9rem;}
+    footer{background:#000;padding:3rem 2rem;text-align:center;color:var(--muted2);font-size:.9rem;}
+    .anchor-note{color:var(--muted);font-size:.9rem;margin-top:.75rem;}
+  </style>
+</head>
+
+<body>
+  <div class="urgency-banner">
+    ⚡ Live Masterclass — Thursday <strong>Nov 6</strong> at <strong>6 PM PT / 9 PM ET</strong>. Only 100 spots. Doors close soon.
+    <span class="countdown" id="countdown"></span>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="badge">The Writer’s Forge Presents</div>
+      <h1>The Secret That Saved <span class="curse">Shrek 2</span> — And How It Can Save Your Script</h1>
+      <p class="subheadline">
+        When I joined <em>Shrek 2</em>, there was no script — just a 3-inch notebook of dead ideas. The film only came alive when we found its <strong>Primal Drive</strong>:
+      </p>
+      <blockquote style="font-style:italic;color:#fca5a5;margin:1rem auto;">“We can be loved for who we are — even the parts we hide.”</blockquote>
+      <p class="tagline">
+        If your script’s stalled or your confidence’s shot, this free masterclass will show you how to turn chaos into story — fast.<br>
+        <strong>Live Thursday, Nov 6 • 6 PM PT / 9 PM ET</strong>
+      </p>
+      <a href="#register" class="cta-button">Teach Me How to Finish My Script</a>
+    </div>
+  </section>
+
+  <!-- PAIN -->
+  <section class="section section-dark">
+    <h2>Every Day You Wait, Your Story Fades</h2>
+    <p style="text-align:center;color:#a8a8a8;max-width:700px;margin:1.5rem auto;">
+      Every day you sit on that half-finished draft, the story fades. Worse, your dream starts to die.<br>
+      You don’t need another course from some fake guru. You need a wake-up call — and real mentorship from someone who’s been exactly where you are.<br>
+      <strong style="color:#fff;">This is it.</strong>
     </p>
-
-    <blockquote style="font-style:italic; color:#fca5a5; margin:1rem auto;">
-      “We can be loved for who we are — even the parts we hide.”
-    </blockquote>
-
-    <p class="tagline">
-      If your script’s stalled or your confidence’s shot, this free masterclass will show you how to turn chaos into story — fast.<br>
-      <strong>Live this Thursday. Seats close at midnight.</strong>
-    </p>
-
-    <a href="#register" class="cta-button">Teach Me How to Finish My Script</a>
-  </div>
-</section>
-
-<!-- 💀 BLEEDING-NECK PAIN -->
-<section class="section section-dark" id="pain">
-  <h2>Every Day You Wait, Your Story Fades</h2>
-  <p style="text-align:center; color:#a8a8a8; max-width:750px; margin:1.5rem auto; font-size:1.2rem;">
-    Every day you sit on that half-finished draft, the story fades. Worse, your dream starts to die.
-  </p>
-  <p style="text-align:center; color:#a8a8a8; max-width:700px; margin:0 auto 2rem; font-size:1.1rem;">
-    You don’t need another course from some fake guru.<br>
-    You need a wake-up call — and real mentorship from someone who’s been exactly where you are.<br>
-    <strong style="color:#fff;">This is it.</strong>
-  </p>
-  <div style="text-align:center;">
-    <a href="#register" class="cta-button">I’m Ready to Fix My Script</a>
-  </div>
-</section>
-
-<!-- 🧭 WHAT YOU’LL LEARN -->
-<section class="section section-accent" id="learn">
-  <h2>What You’ll Learn in 90 Minutes</h2>
-
-  <div class="features-grid">
-    <div class="feature-card">
-      <div class="feature-icon">🎬</div>
-      <h3>From Chaos to Clarity</h3>
-      <p>The rewrite method that turned <em>Shrek 2</em> from a binder of broken ideas into a billion-dollar hit.</p>
-      <div class="detail">Find the structure hiding in your chaos.</div>
+    <div style="text-align:center;">
+      <a href="#register" class="cta-button">I’m Ready to Fix My Script</a>
     </div>
+  </section>
 
-    <div class="feature-card">
-      <div class="feature-icon">🔥</div>
-      <h3>From Flat to Alive</h3>
-      <p>Use the <strong>Primal Forge GPT</strong> to reveal the wound and desire that make your hero breathe.</p>
-      <div class="detail">Discover your character’s emotional heartbeat.</div>
+  <!-- WHAT YOU’LL LEARN -->
+  <section class="section section-accent">
+    <h2>What You’ll Learn in 90 Minutes</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🎬</div>
+        <h3>From Chaos to Clarity</h3>
+        <p>The rewrite method that turned <em>Shrek 2</em> from a binder of broken ideas into a billion-dollar hit.</p>
+        <div class="detail">Find the structure hiding in your chaos.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔥</div>
+        <h3>From Flat to Alive</h3>
+        <p>Use the <strong>Primal Forge GPT</strong> to reveal the wound and desire that make your hero breathe.</p>
+        <div class="detail">Discover your character’s emotional heartbeat.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚙️</div>
+        <h3>From Fear to Flow</h3>
+        <p>Apply my <strong>10 Iron-Clad Rules for a Writing Life</strong> to kill perfectionism and finish with conviction.</p>
+        <div class="detail">Write with purpose, not paralysis.</div>
+      </div>
     </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">⚙️</div>
-      <h3>From Fear to Flow</h3>
-      <p>Apply my <strong>10 Iron-Clad Rules for a Writing Life</strong> to kill perfectionism and finish with conviction.</p>
-      <div class="detail">Write with purpose, not paralysis.</div>
+    <p style="text-align:center;color:#a8a8a8;">Walk away knowing exactly what your story’s about — and how to finish it.</p>
+    <div style="text-align:center;margin-top:2rem;">
+      <a href="#register" class="cta-button">Save My Seat + Send Me the Toolkit</a>
     </div>
-  </div>
+  </section>
 
-  <p style="text-align:center; color:#a8a8a8; font-size:1.1rem; margin-bottom:2rem;">
-    Walk away knowing exactly what your story’s about — and how to finish it.
-  </p>
-
-  <div style="text-align:center;">
-    <a href="#register" class="cta-button">Save My Seat + Send Me the Toolkit</a>
-  </div>
-</section>
-
-<!-- 🎁 TOOLKIT BONUS -->
-<section class="section section-dark" id="toolkit">
-  <h2>Your Free Toolkit</h2>
-  <div style="max-width:800px; margin:0 auto; text-align:center; color:#a8a8a8; font-size:1.1rem;">
-    <p><strong>The Primal Forge Toolkit</strong> includes:</p>
-    <ul class="problem-list" style="margin-top:2rem;">
+  <!-- TOOLKIT -->
+  <section class="section section-dark">
+    <h2>Your Free Toolkit</h2>
+    <ul class="problem-list">
       <li><strong>Primal Forge GPT</strong> — analyzes your characters’ emotional depth in minutes.</li>
       <li><strong>10 Iron-Clad Rules (PDF)</strong> — the mindset system that saved <em>Shrek 2</em> and my career.</li>
     </ul>
-    <p>Get it instantly when you register — free.</p>
-    <a href="#register" class="cta-button">Send Me the Toolkit</a>
-  </div>
-</section>
+    <p style="text-align:center;color:#a8a8a8;">Get it instantly when you register — free.</p>
+    <div style="text-align:center;"><a href="#register" class="cta-button">Send Me the Toolkit</a></div>
+  </section>
 
-<!-- 🧠 AUTHORITY / BIO -->
-<section class="section section-accent" id="about">
-  <h2>Why Listen to Me?</h2>
-  <p style="max-width:800px; margin:0 auto; text-align:center; color:#a8a8a8; font-size:1.1rem;">
-    I’ve written stories that have earned <strong>$2.5 billion worldwide</strong> — from <em>Shrek 2</em> to <em>Disenchanted</em> to <em>Rugrats</em>.
-    But none of that would’ve happened if I hadn’t faced the same fear every writer knows — the blank page, the doubt, the “maybe I’m not good enough.”  
-    That fear doesn’t disappear — you learn to forge through it. I’ll show you how.
-  </p>
-</section>
+  <!-- BIO -->
+  <section class="section section-accent">
+    <h2>Why Listen to Me?</h2>
+    <p style="text-align:center;color:#a8a8a8;max-width:800px;margin:0 auto;">
+      I’ve written stories that have earned <strong>$2.5 billion worldwide</strong> — from <em>Shrek 2</em> to <em>Disenchanted</em> to <em>Rugrats</em>.<br>
+      But none of that would’ve happened if I hadn’t faced the same fear every writer knows — the blank page, the doubt, the “maybe I’m not good enough.”<br>
+      That fear doesn’t disappear — you learn to forge through it. I’ll show you how.
+    </p>
+  </section>
 
-<!-- 🪓 FINAL CTA -->
-<section class="section section-dark" id="register">
-  <h2>Stop Starting. Start Finishing.</h2>
-  <p style="text-align:center; color:#a8a8a8; font-size:1.2rem; max-width:750px; margin:0 auto 2rem;">
-    The same creative chaos that almost killed <em>Shrek 2</em> is where your best story is hiding.  
-    Let’s find it together.
-  </p>
-  <div style="text-align:center;">
-    <a href="#register" class="cta-button">Yes — Show Me How to Save My Script</a>
-    <p class="anchor-note">Live Thursday [DATE] • Seats Close at Midnight</p>
-  </div>
-</section>
+  <!-- FINAL CTA -->
+  <section class="section section-dark" id="register">
+    <h2>Stop Starting. Start Finishing.</h2>
+    <p style="text-align:center;color:#a8a8a8;max-width:700px;margin:0 auto 2rem;">
+      The same creative chaos that almost killed <em>Shrek 2</em> is where your best story is hiding. Let’s find it together.
+    </p>
+    <div style="text-align:center;">
+      <a href="#register" class="cta-button">Yes — Show Me How to Save My Script</a>
+      <p class="anchor-note">Live Thursday Nov 6 • 6 PM PT / 9 PM ET</p>
+    </div>
+  </section>
 
-<footer>
-  <p>© 2025 The Writer’s Forge • All Rights Reserved • J. David Stem Masterclass</p>
-</footer>
+  <footer>
+    <p>© 2025 The Writer’s Forge • All Rights Reserved • J. David Stem Masterclass</p>
+  </footer>
+
+  <!-- COUNTDOWN SCRIPT -->
+  <script>
+    const targetDate = new Date('November 6, 2025 18:00:00 GMT-0800'); // 6 PM PT
+    const out = document.getElementById('countdown');
+    function pad(n){return String(n).padStart(2,'0');}
+    function tick(){
+      const now = new Date();
+      const diff = targetDate - now;
+      if(diff<=0){out.textContent=' • ⏳ Event Started';clearInterval(timer);return;}
+      const d=Math.floor(diff/86400000);
+      const h=Math.floor((diff%86400000)/3600000);
+      const m=Math.floor((diff%3600000)/60000);
+      const s=Math.floor((diff%60000)/1000);
+      out.textContent=` • ${d}d ${pad(h)}h ${pad(m)}m ${pad(s)}s`;
+    }
+    const timer=setInterval(tick,1000);tick();
+  </script>
+</body>
+</html>
